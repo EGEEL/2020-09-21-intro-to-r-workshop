@@ -26,17 +26,17 @@
 
 # Solution:
 
-
+(11+1)/6
 # Calculate 10 plus 2 all divided by 3 and then squared
 
 # Solution:
 
-
+((10+2)/3)^2
 
 
 # Storing values
 a <- 3              # assign the number 3 to OBJECT (variable) called "a"
-b <- 5              # assign 5 to b
+a + b             # assign 5 to b
 
 a                   # so what's the value of OBJECT "a"
 b                   # ... and what's b
@@ -59,14 +59,16 @@ a + b               # we can add them together just like numbers
 #
 # Solution:
 
+# option - short cut <- 
 
 
+a <- 20
+
+c <- a + b
 # Logical operators
 #
 # == != < > >= <= !
-1 < 124
-
-#
+# == exactly equal    != no equal   >= greater than or equal to
 # Sensible object names are sensible ...
 #
 date_of_birth <- 7
@@ -85,22 +87,24 @@ ekljre2jklwef023ijlefj93jkl23rj90f32k <- 1
 # Assign the name of this workshop to a object with a good name.
 #
 # Solution: [Hint:       <- "Introduction to R"]
-
+Intro_to_R <- "Introduction to R"
 # Assign the name of video conferencing tool we are using to an object
 #
 # Solution: [Hint:      <- "Zoom"]
 
+Online_Lecture <- "Zoom"
 
 # Which of these are valid object names: [Hint: Try them out]
-#
-#  min_height
-#  max.height
-#  _age
-#  .mass
-#  MaxLength
-#  min-length
-#  2widths
-#  celsius2kelvin
+# shift command c uncomments things
+
+ # min_height <- 8
+ # max.height <- 8
+ # _age <- 4  no good
+ # .mass<- 4  no good even though accepted but doesnt come into global environment, don't use.
+ # MaxLength <- 4
+ # min-length <- 4 no good, can't use dash bc it thinks its a minus
+ # 2widths <- 4  no good
+ # celsius2kelvin <- 4
 
 #
 # Topic: Displaying results
@@ -150,15 +154,16 @@ weight_kg
 #
 # Add explanatory comments to the following lines of code
 
-ft <- 3
-in <- ft * 12
-cms <- in * 2.54
-m = cms / 100
+ft <- 3 #feet
+in <- ft * 12 #inches
+cms <- in * 2.54 #centimetres
+m = cms / 100 #metres
 
 #
 # Topic: Functions and Arguments
 #
-sqrt(2)
+sqrt(2)    # sqare root of 2, 2 is the argument, sqrt is the function.
+a <- 16
 sqrt(a)
 abs(-23.3)
 round(3.14159)
@@ -168,7 +173,8 @@ pi
 ?round
 args(round)
 
-round(3.14159, digits = 2)
+round(3.14159, digits = 2) #or
+round(3.14159,2)
 round(digits = 2, x = 3.14159)
 
 #
@@ -178,6 +184,8 @@ round(digits = 2, x = 3.14159)
 #
 # Answer:
 
+log10(a)
+# = 3.14
 
 
 #
