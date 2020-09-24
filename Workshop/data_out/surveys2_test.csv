@@ -1,0 +1,18 @@
+record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight,genus,species,taxa,plot_type
+4052,4,5,1981,3,PF,F,15,4,Perognathus,flavus,Rodent,Long-term Krat Exclosure
+7084,11,22,1982,3,PF,F,16,4,Perognathus,flavus,Rodent,Long-term Krat Exclosure
+28126,6,28,1998,15,PF,M,NA,4,Perognathus,flavus,Rodent,Long-term Krat Exclosure
+9909,1,20,1985,15,RM,F,15,4,Reithrodontomys,megalotis,Rodent,Long-term Krat Exclosure
+9853,1,19,1985,17,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Control
+4290,4,6,1981,4,PF,NA,NA,4,Perognathus,flavus,Rodent,Control
+29906,10,10,1999,4,PP,M,21,4,Chaetodipus,penicillatus,Rodent,Control
+8736,12,8,1983,19,RM,M,17,4,Reithrodontomys,megalotis,Rodent,Long-term Krat Exclosure
+9799,1,19,1985,19,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Long-term Krat Exclosure
+9794,1,19,1985,24,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Rodent Exclosure
+218,9,13,1977,1,PF,M,13,4,Perognathus,flavus,Rodent,Spectab exclosure
+5346,2,22,1982,21,PF,F,14,4,Perognathus,flavus,Rodent,Long-term Krat Exclosure
+9937,2,16,1985,21,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Long-term Krat Exclosure
+10119,3,17,1985,10,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Rodent Exclosure
+9790,1,19,1985,16,RM,F,16,4,Reithrodontomys,megalotis,Rodent,Rodent Exclosure
+9823,1,19,1985,23,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Rodent Exclosure
+10439,5,24,1985,7,RM,M,16,4,Reithrodontomys,megalotis,Rodent,Rodent Exclosure

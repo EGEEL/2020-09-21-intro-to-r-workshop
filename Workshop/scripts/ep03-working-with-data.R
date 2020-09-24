@@ -303,15 +303,33 @@ install.packages("tidyr", repos = "http://cran.us.r-project.org")
 #	and the number of genera per plot as the values. You will need to summarize before reshaping,
 #	and use the function n_distinct() to get the number of unique genera within a particular chunk of data.
 #	It’s a powerful function! See ?n_distinct for more.
+surveys_spread_genera <- surveys %>% 
+  group_by(plot_id, year) %>% 
+  summarise(n_genera= n_distinct(genus)) %>% 
+  spread(year, n_genera)
 
+head(surveys_spread_genera)
 # 2. Now take that data frame and gather() it again, so each row is a unique plot_id by year combination.
 
+surveys_spread_genera2 <- surveys_spread_genera %>% 
+  gather(key = year, value=n_genera, -plot_id)
+ head(surveys_spread_genera2)
+
+ # i think this the right one not the one the presenter did. 
+ 
+
+ 
 # 3. The surveys data set has two measurement columns: hindfoot_length and weight.
 #	This makes it difficult to do things like look at the relationship between mean values of each
 #	measurement per year in different plot types. Let’s walk through a common solution for this type of problem.
 #	First, use gather() to create a dataset where we have a key column called measurement and a value column that
 #	takes on the value of either hindfoot_length or weight.
 #	Hint: You’ll need to specify which columns are being pivoted.
+
+surveys_long <- surveys %>% 
+  gather(key = measurement, value = hindfoot_length, weight)
+head(surveys_long)
+# confused by this one as the measurement says weight
 
 # 4. With this new data set, calculate the average of each measurement in each year for each different plot_type.
 #	Then spread() them into a data set with a column for hindfoot_length and weight.
@@ -329,7 +347,7 @@ install.packages("tidyr", repos = "http://cran.us.r-project.org")
 #----------------
 # Exporting data
 #----------------
-
+write_csv(surveys2, path ="data_out/surveys2_test.csv")
 
 
 
