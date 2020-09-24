@@ -254,38 +254,73 @@ heavy2 <- surveys %>%
   select(year, genus, species, weight) %>%
   arrange(year)
 
+#or
+heavy3 <- surveys %>% 
+  filter(!is.na(weight)) %>%
+  group_by(year) %>%
+  filter(weight == max(weight)) %>% 
+  select(year, genus, species, weight) %>%
+  arrange(year) %>% 
+  distinct()
+#distinct because there are two indivs in one year of the same species with the same weight 
+
+
 
 #-----------
 # Reshaping
 #-----------
+surveys_gw <- surveys %>% 
+  filter(!is.na(weight)) %>% 
+  group_by(plot_id,genus) %>% 
+  summarize(mean_weight = mean(weight))
+  
+  
+surveys_wider <- surveys_gw %>% 
+  spread(key = genus, value= mean_weight)
+str(surveys_wider)
+  
 
 
+  
+# spread and gather in the older version
+  # in new package
+#pivot_wider(!plot_id, names_from = “genus”, values_from = mean_weight)
 
 
+surveys_gather <- surveys_wider %>% 
+  gather(key=genus, value=mean_weight, -plot_id)
 
 
+#updating the package for the commands 
+remove.packages("tidyr")
+install.packages("tidyr", repos = "http://cran.us.r-project.org")
 
 #-----------
 # CHALLENGE
 #-----------
 
-# 1. Spread the surveys data frame with year as columns, plot_id as rows, 
-#    and the number of genera per plot as the values. You will need to summarize before reshaping, 
-#    and use the function n_distinct() to get the number of unique genera within a particular chunk of data. 
-#    It’s a powerful function! See ?n_distinct for more.
+#1. Spread the surveys data frame with year as columns, plot_id as rows,
+#	and the number of genera per plot as the values. You will need to summarize before reshaping,
+#	and use the function n_distinct() to get the number of unique genera within a particular chunk of data.
+#	It’s a powerful function! See ?n_distinct for more.
 
-# 2. Now take that data frame and pivot_longer() it again, so each row is a unique plot_id by year combination.
+# 2. Now take that data frame and gather() it again, so each row is a unique plot_id by year combination.
 
-# 3. The surveys data set has two measurement columns: hindfoot_length and weight. 
-#    This makes it difficult to do things like look at the relationship between mean values of each 
-#    measurement per year in different plot types. Let’s walk through a common solution for this type of problem. 
-#    First, use pivot_longer() to create a dataset where we have a key column called measurement and a value column that 
-#    takes on the value of either hindfoot_length or weight. 
-#    Hint: You’ll need to specify which columns are being pivoted.
+# 3. The surveys data set has two measurement columns: hindfoot_length and weight.
+#	This makes it difficult to do things like look at the relationship between mean values of each
+#	measurement per year in different plot types. Let’s walk through a common solution for this type of problem.
+#	First, use gather() to create a dataset where we have a key column called measurement and a value column that
+#	takes on the value of either hindfoot_length or weight.
+#	Hint: You’ll need to specify which columns are being pivoted.
 
-# 4. With this new data set, calculate the average of each measurement in each year for each different plot_type. 
-#    Then pivot_wider() them into a data set with a column for hindfoot_length and weight. 
-#    Hint: You only need to specify the key and value columns for pivot_wider().
+# 4. With this new data set, calculate the average of each measurement in each year for each different plot_type.
+#	Then spread() them into a data set with a column for hindfoot_length and weight.
+#	Hint: You only need to specify the key and value columns for spread().
+
+
+
+
+
 
 
 
