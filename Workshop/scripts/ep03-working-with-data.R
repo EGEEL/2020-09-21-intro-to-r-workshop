@@ -32,18 +32,31 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
 # Lets get started!
 #------------------
 
+install.packages("tidyverse")
+library(tidyverse)
 
+#talkin about dplyr (working with the data) and tidyr(reshaping for plotting)
 
+#load the dataset
 
+surveys <- read_csv("data_raw/portal_data_joined.csv")
+
+#have a look at it to see its ok
+# check structure
+str(surveys)
 
 
 #-----------------------------------
 # Selecting columns & filtering rows
 #-----------------------------------
+#selected these 3 columns
+select(surveys, plot_id, species_id, weight)
 
+#select most columns expect a few
+select(surveys, -record_id, -species_id)
 
-
-
+#filter for a particular year (1995): saving it as surveys1995
+surveys_1995 <- filter(surveys, year == 1995)
 
 
 
@@ -51,9 +64,24 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
 # Pipes
 #-------
 
+# the pipe --> %>% or cmd shift m
 
 
+surveys2 <- filter(surveys, weight < 5)
+surveys_smal <- select(surveys2, species_id, sex, weight)
 
+# or combine them, 
+surveys_smal <-  select(filter(surveys, weight > 5), species_id, sex, weight)
+
+#using the pipe, it tells it is in surveys
+surveys %>% 
+  filter(weight < 5) %>% 
+  select(species_id, sex, weight)
+
+#to save it for later
+surveys_smal <- surveys %>% 
+  filter(weight < 5) %>% 
+  select(species_id, sex, weight)
 
 
 #-----------
@@ -64,16 +92,32 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
 # retain only the columns ```year```, ```sex```, and ```weight```.
 
 
-
+surveys_before_1995 <- surveys %>% 
+  filter(year < 1995) %>% 
+  select(year, sex, weight)
+#not in this case I could have selected first to reduce the computation time. 
+#but need to think about the order in other cases
 
 
 #--------
 # Mutate
 #--------
 
+#for example for creating a transformed column 
 
+#created two new columns weight_kg and weight_ib
+surveys_weights <- surveys %>% 
+  mutate(weight_kg = weight / 1000, weight_ib = weight_kg *2.2)
 
+head()
 
+# filter then create a new column
+# ! infront of the is.na command removes all nas !!!!!!!!!!!!
+
+surveys_na_weights_removed <- surveys %>% 
+  filter(!is.na(weight)) %>% 
+  mutate(weight_kg = weight / 1000)
+head()
 
 
 #-----------
@@ -87,7 +131,12 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
 
 # Hint: think about how the commands should be ordered to produce this data frame!
 
-
+surveys_new <- surveys %>% 
+  filter(!is.na(hindfoot_length)) %>% 
+  mutate(hindfoot_cm = hindfoot_length / 10) %>% 
+  filter(hindfoot_cm < 3) %>% 
+  select(species_id, hindfoot_cm)
+head(surveys_new)
 
 
 
